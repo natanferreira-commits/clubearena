@@ -19,7 +19,7 @@ export default async function Landing() {
       <Topbar direita={logado ? <Link href="/painel" className="topbar-link">Meu painel</Link> : undefined} />
 
       <div className="hero">
-        <div className="eyebrow" style={{ marginBottom: 16 }}>Para membros da Arena</div>
+        <div className="eyebrow" style={{ marginBottom: 16 }}>Seu convite vale PIX</div>
         <h1 className="display" style={{ marginBottom: 16 }}>
           Convide amigos. <span className="accent">{brl(v)} no seu PIX</span> por cada um que entrar.
         </h1>

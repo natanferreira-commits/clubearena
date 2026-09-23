@@ -10,7 +10,6 @@ const SECOES: { t: string; itens: string[]; id?: string }[] = [
     itens: [
       'O Clube Arena é uma comunidade gratuita de membros maiores de 18 anos.',
       'Cada pessoa pode ter um único cadastro, vinculado a um número de WhatsApp.',
-      'O apelido aparece no ranking público do mês. Não use seu nome completo se não quiser.',
     ],
   },
   {
@@ -31,13 +30,6 @@ const SECOES: { t: string; itens: string[]; id?: string }[] = [
       'Visitar ou usar o próprio convite, ou cadastrar amigos a partir do mesmo aparelho.',
       'Prints editados, de outra pessoa ou com valor diferente do depósito real.',
       'Envios suspeitos são recusados e o membro pode ser removido do clube.',
-    ],
-  },
-  {
-    t: 'Ranking do mês',
-    itens: [
-      'O ranking mostra os membros com mais amigos confirmados no mês e zera todo dia 1, à meia-noite de Brasília.',
-      'Selos: Bronze a partir de 1 amigo, Prata 3, Ouro 5 e Diamante 10. Quem fecha o mês como Diamante leva o selo para o histórico.',
     ],
   },
   {

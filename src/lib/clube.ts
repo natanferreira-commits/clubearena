@@ -1,6 +1,6 @@
 import 'server-only';
 import { createHash, randomInt } from 'node:crypto';
-import { REGRAS, linkConvite, nivelPorConvites } from './config';
+import { REGRAS, linkConvite } from './config';
 import { brl, intervaloMes, mesChave, nomeMes } from './format';
 import { getRepo, type Conversao, type Membro, type StatusConversao } from './repo';
 import { enviarWhatsApp } from './zapi';
@@ -117,7 +117,6 @@ export async function resumoMembro(membro: Membro) {
     pixRecebidos: payouts.filter((p) => p.status === 'pago').length,
     validadosMes: doMes.length,
     faltamBonus: Math.max(0, REGRAS.metaBonus - doMes.length),
-    nivelMes: nivelPorConvites(doMes.length),
     ultimos: ultimos.map((m) => ({ apelido: m.apelido, desde: m.criado_em, ...rotuloStatus(porConvidado.get(m.id)) })),
   };
 }
@@ -137,50 +136,6 @@ async function bonusPendente(membroId: string, conversoes?: Conversao[], payouts
   return [...porMes.entries()]
     .filter(([mes, cs]) => cs.length >= REGRAS.metaBonus && !pagos.has(mes) && cs.every(liberada))
     .map(([mes]) => ({ mes, valor: REGRAS.bonusSurpresa }));
-}
-
-// ---------------------------------------------------------------- ranking
-
-export type LinhaRanking = { pos: number; apelido: string; convites: number; nivel: string | null; historico: string | null; membroId: string };
-
-export async function ranking(mes: string, limite = 20): Promise<LinhaRanking[]> {
-  const repo = getRepo();
-  const doMes = await repo.conversoes({ status: CONTAM, validadaEntre: intervaloMes(mes) });
-  const contagem = new Map<string, number>();
-  for (const c of doMes) if (c.indicador_id) contagem.set(c.indicador_id, (contagem.get(c.indicador_id) ?? 0) + 1);
-  const top = [...contagem.entries()].sort((a, b) => b[1] - a[1]).slice(0, limite);
-  if (!top.length) return [];
-
-  const membros = await repo.membrosPorIds(top.map(([id]) => id));
-  const historico = await historicoDiamante(top.map(([id]) => id), mes);
-  return top.map(([id, convites], i) => ({
-    pos: i + 1,
-    membroId: id,
-    apelido: membros.find((m) => m.id === id)?.apelido ?? '—',
-    convites,
-    nivel: nivelPorConvites(convites),
-    historico: historico.get(id) ? `Diamante ${historico.get(id)}× no histórico` : null,
-  }));
-}
-
-/** Quantos meses anteriores cada membro fechou como Diamante (selo permanente, PRD §7.3). */
-async function historicoDiamante(ids: string[], mesAtual: string): Promise<Map<string, number>> {
-  const todas = await getRepo().conversoes({ status: CONTAM });
-  const porMembroMes = new Map<string, number>();
-  for (const c of todas) {
-    if (!c.indicador_id || !ids.includes(c.indicador_id) || !c.validada_em) continue;
-    const m = mesChave(new Date(c.validada_em));
-    if (m >= mesAtual) continue;
-    const k = `${c.indicador_id}|${m}`;
-    porMembroMes.set(k, (porMembroMes.get(k) ?? 0) + 1);
-  }
-  const res = new Map<string, number>();
-  for (const [k, n] of porMembroMes) {
-    if (nivelPorConvites(n) !== 'Diamante') continue;
-    const id = k.split('|')[0];
-    res.set(id, (res.get(id) ?? 0) + 1);
-  }
-  return res;
 }
 
 export async function membrosNoMes(): Promise<number> {

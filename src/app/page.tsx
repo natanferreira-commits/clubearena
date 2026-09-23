@@ -1,16 +1,13 @@
 import Link from 'next/link';
 import { Page, Passos, Rodape, Topbar } from '@/components/Shell';
-import { Ranking } from '@/components/Ranking';
-import { ranking } from '@/lib/clube';
 import { REGRAS } from '@/lib/config';
 import { PASSOS_MEMBRO, REGRAS_CONVITE } from '@/lib/copy';
-import { brl, diasParaVirada, mesChave, nomeMes } from '@/lib/format';
+import { brl } from '@/lib/format';
 import { getRepo } from '@/lib/repo';
 import { membroLogadoId } from '@/lib/session';
 
 export default async function Landing() {
-  const mes = mesChave();
-  const [top, logado] = await Promise.all([ranking(mes, 5), membroLogadoId()]);
+  const logado = await membroLogadoId();
   await getRepo().registrarEvento({ evento: 'page_view', membro_id: logado, meta: { pagina: '/' } });
   const v = REGRAS.valorPorAmigo;
 
@@ -52,19 +49,6 @@ export default async function Landing() {
       </div>
 
       <div className="section">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6 }}>
-          <h2 className="heading">Ranking de {nomeMes(mes)}</h2>
-          <span className="caption">faltam {diasParaVirada()} dias</span>
-        </div>
-        <Ranking linhas={top} vazio="Seu apelido aparece aqui assim que o primeiro amigo for confirmado." />
-        {top.length > 0 && (
-          <Link href="/ranking" className="caption u" style={{ display: 'inline-block', marginTop: 14 }}>
-            Ver ranking completo
-          </Link>
-        )}
-      </div>
-
-      <div className="section">
         <h2 className="heading" style={{ marginBottom: 8 }}>Quando o convite conta</h2>
         <div className="stack">
           {REGRAS_CONVITE.map((r) => (
@@ -77,7 +61,7 @@ export default async function Landing() {
         <div className="block stack gap-14" style={{ margin: '40px 24px 0', padding: '24px 20px' }}>
           <div>
             <div className="heading">Entrar no clube</div>
-            <div className="small" style={{ marginTop: 4 }}>Seu WhatsApp é seu acesso. O apelido é o nome que aparece no ranking.</div>
+            <div className="small" style={{ marginTop: 4 }}>Seu WhatsApp é seu acesso. O apelido é como o clube vai te chamar.</div>
           </div>
           <Link href="/entrar" className="btn btn-primary">Criar meu convite</Link>
           <div className="micro center">

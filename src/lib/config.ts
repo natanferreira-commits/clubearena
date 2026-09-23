@@ -9,18 +9,6 @@ export const REGRAS = {
   slaHoras: 48, // prazo de validação do comprovante
 } as const;
 
-// Selos do ranking (não são mecânica de recompensa, só reconhecimento — PRD §6 e §9)
-export const NIVEIS = [
-  { nome: 'Diamante', min: 10 },
-  { nome: 'Ouro', min: 5 },
-  { nome: 'Prata', min: 3 },
-  { nome: 'Bronze', min: 1 },
-] as const;
-
-export function nivelPorConvites(n: number): string | null {
-  return NIVEIS.find((nv) => n >= nv.min)?.nome ?? null;
-}
-
 export const OTP_ATIVO = process.env.OTP_ATIVO === 'true';
 
 export function siteUrl(): string {

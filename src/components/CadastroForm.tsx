@@ -88,7 +88,7 @@ export function CadastroForm({ modo, convite, destino, pedirPix, otp }: {
             <p className="body">
               {modo === 'login'
                 ? 'Use o mesmo WhatsApp do seu cadastro.'
-                : 'Seu WhatsApp é seu acesso. O apelido é o nome que aparece no ranking.'}
+                : 'Seu WhatsApp é seu acesso. O apelido é como o clube vai te chamar.'}
             </p>
           </div>
 

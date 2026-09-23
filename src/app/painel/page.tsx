@@ -21,7 +21,6 @@ export default async function Painel() {
             <div className="heading">{m.apelido}</div>
             <div className="caption">
               Membro <span className="mono">{m.codigo}</span>
-              {r.nivelMes && <> · {r.nivelMes} este mês</>}
             </div>
           </div>
         </div>
@@ -90,10 +89,6 @@ export default async function Painel() {
             <span>
               {mascararPix(m.tipo_pix, m.chave_pix)} · <Link href="/painel/pix" className="u">{m.chave_pix ? 'Alterar' : 'Informar'}</Link>
             </span>
-          </div>
-          <div className="row">
-            <span>Ranking do mês</span>
-            <span><Link href="/ranking" className="u">Ver ranking</Link></span>
           </div>
         </div>
       </div>

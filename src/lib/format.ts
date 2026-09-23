@@ -5,15 +5,10 @@ export function brl(v: number): string {
   return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: v % 1 ? 2 : 0 });
 }
 
-/** 'YYYY-MM' no fuso de Brasília (o ranking vira dia 1 às 00h BRT). */
+/** 'YYYY-MM' no fuso de Brasília. */
 export function mesChave(d: Date = new Date()): string {
   const p = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit' }).formatToParts(d);
   return `${p.find((x) => x.type === 'year')!.value}-${p.find((x) => x.type === 'month')!.value}`;
-}
-
-export function mesAnterior(chave: string): string {
-  const [y, m] = chave.split('-').map(Number);
-  return m === 1 ? `${y - 1}-12` : `${y}-${String(m - 1).padStart(2, '0')}`;
 }
 
 export function nomeMes(chave: string): string {
@@ -24,11 +19,6 @@ export function nomeMes(chave: string): string {
 export function intervaloMes(chave: string): [Date, Date] {
   const [y, m] = chave.split('-').map(Number);
   return [new Date(Date.UTC(y, m - 1, 1, 3)), new Date(Date.UTC(y, m, 1, 3))];
-}
-
-export function diasParaVirada(d: Date = new Date()): number {
-  const [, fim] = intervaloMes(mesChave(d));
-  return Math.max(1, Math.ceil((fim.getTime() - d.getTime()) / 86_400_000));
 }
 
 export function dataCurta(iso: string | null | undefined): string {

@@ -11,7 +11,7 @@ npm install
 npm run dev
 ```
 
-Sem `SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY` o app sobe em **modo demonstração**: dados de exemplo em memória (ranking, casas Alfa/Beta/Gama, fila com 3 comprovantes). Admin em `/admin`, senha `arena` (só vale no modo demonstração).
+Sem `SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY` o app sobe em **modo demonstração**: dados de exemplo em memória (membros, casas Alfa/Beta/Gama, fila com 3 comprovantes). Admin em `/admin`, senha `arena` (só vale no modo demonstração).
 
 ## Colocar no ar
 
@@ -24,11 +24,10 @@ Sem `SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY` o app sobe em **modo demonstraç�
 
 | Rota | O que é |
 |---|---|
-| `/` | Landing: como funciona, quanto vale, ranking top 5, regras |
+| `/` | Landing: como funciona, quanto vale, regras |
 | `/entrar` | Cadastro (WhatsApp + apelido → chave PIX opcional). `?modo=login` entra com o WhatsApp |
 | `/bem-vindo` | Link pessoal, copiar, compartilhar no WhatsApp |
 | `/painel` | Em análise × disponível, estatísticas, bônus surpresa, últimos 5 convites, chave PIX |
-| `/ranking` | Top 20 do mês / mês anterior, com selos |
 | `/c/[codigo]` | LP do convite (o que o amigo vê) |
 | `/c/[codigo]/entrar` | Cadastro do amigo, vinculado a quem convidou |
 | `/c/[codigo]/casas` | Grid de casas com oferta de boas-vindas → `/ir/[slug]` registra e redireciona |
@@ -43,7 +42,7 @@ Sem `SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY` o app sobe em **modo demonstraç�
 
 Tudo em `src/lib/config.ts`: R$ 30 por amigo, bônus surpresa de R$ 200 ao chegar em 10 no mês, limite de 10 recompensas/mês, primeiro depósito mínimo de R$ 30, 3 dias de análise após a validação, SLA de 48 h.
 
-Ciclo de uma conversão: `aguardando_comprovante` (amigo escolheu a casa) → `pendente` (enviou os prints) → `validada` / `rejeitada` → `paga` (entrou num PIX). O ranking e o reset mensal saem de `validada_em`, calculados no fuso de Brasília, sem job de virada.
+Ciclo de uma conversão: `aguardando_comprovante` (amigo escolheu a casa) → `pendente` (enviou os prints) → `validada` / `rejeitada` → `paga` (entrou num PIX). O bônus surpresa e o limite do mês usam `validada_em`, no fuso de Brasília.
 
 **Antifraude do MVP:** 1 WhatsApp = 1 membro; visitas ao próprio convite não contam; cadastro de amigo feito do mesmo aparelho (cookie) ou IP de quem convidou aparece com ⚠ na fila; valor abaixo do mínimo bloqueia a validação; chave PIX alterada nos últimos 7 dias aparece em alerta no pagamento.
 
@@ -51,7 +50,7 @@ Ciclo de uma conversão: `aguardando_comprovante` (amigo escolheu a casa) → `p
 
 ## Diferenças em relação ao handoff de design
 
-O design foi desenhado com estrelas e níveis (Diamante = prêmio único). Seguimos o PRD v2: recompensa direta por amigo, com níveis só como selo no ranking. Também:
+O design foi desenhado com estrelas, níveis e ranking. Seguimos o PRD v2 com recompensa direta por amigo, e o ranking foi removido. Também:
 
 - **Sem código por WhatsApp (OTP) no cadastro.** O fluxo está pronto: basta `OTP_ATIVO=true` com a Z-API configurada.
 - **Chave PIX opcional** no cadastro ("Informar depois").

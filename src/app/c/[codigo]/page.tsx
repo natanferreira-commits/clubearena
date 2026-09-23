@@ -87,7 +87,7 @@ export default async function Convite({ params }: { params: Promise<{ codigo: st
             <div className="benefit-mark">✓</div>
             <div>
               <div className="step-t">Seu próprio convite</div>
-              <div className="step-d">Entrou no clube, já pode convidar e aparecer no ranking do mês.</div>
+              <div className="step-d">Entrou no clube, já pode convidar seus amigos também.</div>
             </div>
           </div>
         </div>

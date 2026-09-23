@@ -1,6 +1,6 @@
 // Regras de negócio do clube (PRD §4 e §7). Mudou uma regra? Muda aqui.
 export const REGRAS = {
-  valorPorAmigo: 50, // R$ por amigo com primeiro depósito validado
+  valorPorAmigo: 30, // R$ por amigo com primeiro depósito validado
   bonusSurpresa: 200, // R$ extra ao chegar na meta do mês
   metaBonus: 10, // amigos validados no mês para o bônus surpresa
   capMensal: 10, // máximo de recompensas por membro no mês (MVP)

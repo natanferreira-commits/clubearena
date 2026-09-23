@@ -1,6 +1,6 @@
 # Clube Arena
 
-Clube de membros da Arena: quem já tem conta na casa parceira convida amigos que ainda não têm, e recebe **R$ 50 no PIX** por amigo com primeiro depósito validado. Implementação do MVP descrito no PRD (v2, 2026-09-23), com o visual do handoff do Claude Design (IBM Plex Sans, fundo branco, verde limão).
+Clube de membros da Arena: quem já tem conta na casa parceira convida amigos que ainda não têm, e recebe **R$ 30 no PIX** por amigo com primeiro depósito validado. Implementação do MVP descrito no PRD (v2, 2026-09-23), com o visual do handoff do Claude Design (IBM Plex Sans, fundo branco, verde limão).
 
 **Stack:** Next.js 15 (App Router) · Supabase (Postgres + Storage) · Z-API (WhatsApp) · Vercel.
 
@@ -41,7 +41,7 @@ Sem `SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY` o app sobe em **modo demonstraç�
 
 ## Regras de negócio
 
-Tudo em `src/lib/config.ts`: R$ 50 por amigo, bônus surpresa de R$ 200 ao chegar em 10 no mês, limite de 10 recompensas/mês, primeiro depósito mínimo de R$ 30, 3 dias de análise após a validação, SLA de 48 h.
+Tudo em `src/lib/config.ts`: R$ 30 por amigo, bônus surpresa de R$ 200 ao chegar em 10 no mês, limite de 10 recompensas/mês, primeiro depósito mínimo de R$ 30, 3 dias de análise após a validação, SLA de 48 h.
 
 Ciclo de uma conversão: `aguardando_comprovante` (amigo escolheu a casa) → `pendente` (enviou os prints) → `validada` / `rejeitada` → `paga` (entrou num PIX). O ranking e o reset mensal saem de `validada_em`, calculados no fuso de Brasília, sem job de virada.
 

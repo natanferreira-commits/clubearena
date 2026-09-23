@@ -1,0 +1,38 @@
+:root {
+  /* Espaço: base 4 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-14: 56px;
+
+  --page-gutter: var(--space-6);     /* padding lateral da tela */
+  --section-gap: var(--space-10);    /* entre seções da LP */
+  --row-padding: var(--space-4);     /* linhas de lista com hairline */
+
+  /* Raio */
+  --radius-sm: 4px;    /* badge, selo 18+ */
+  --radius-md: 8px;    /* input */
+  --radius-lg: 10px;   /* placeholder de ranking */
+  --radius-xl: 14px;   /* bloco destacado */
+  --radius-2xl: 20px;  /* moldura da tela */
+  --radius-pill: 999px; /* botão primário, tag */
+
+  /* Sombra: só uma, só no CTA. Cards não têm sombra. */
+  --shadow-cta: 0 6px 18px rgba(191, 232, 58, 0.35);
+
+  /* Tamanhos de controle */
+  --control-h-input: 48px;
+  --control-h-button: 54px;
+  --hit-min: 44px;
+  --avatar-sm: 40px;
+  --screen-w-mobile: 390px;
+
+  /* Movimento: quase nenhum */
+  --motion-fast: 150ms ease;
+}

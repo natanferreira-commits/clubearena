@@ -1,0 +1,20 @@
+:root {
+  --font-sans: "IBM Plex Sans", Helvetica, system-ui, sans-serif;
+  --font-mono: ui-monospace, Menlo, monospace; /* só para códigos e links de convite */
+
+  --weight-regular: 400;
+  --weight-medium: 500;   /* rótulos, botões, títulos de linha */
+  --weight-semibold: 600; /* títulos, wordmark, eyebrow */
+
+  /* Escala (mobile 390 é a referência) */
+  --text-display-size: 34px;  --text-display-lh: 1.1;  --text-display-ls: -0.02em;
+  --text-heading-size: 20px;  --text-heading-lh: 1.3;  --text-heading-ls: -0.01em;
+  --text-body-lg-size: 16px;  --text-body-lg-lh: 1.5;
+  --text-body-size: 15px;     --text-body-lh: 1.5;
+  --text-body-sm-size: 14px;  --text-body-sm-lh: 1.45;
+  --text-caption-size: 13px;  --text-caption-lh: 1.5;
+  --text-micro-size: 12px;    --text-micro-lh: 1.5;
+  --text-eyebrow-size: 12px;  --text-eyebrow-ls: 0.06em; /* uppercase, weight 600 */
+
+  --text-wordmark-size: 16px; /* "Clube Arena." — ponto final em --accent */
+}

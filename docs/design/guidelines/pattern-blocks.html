@@ -1,0 +1,21 @@
+<!-- @dsCard group="Patterns" viewport="700x180" subtitle="Bloco --surface-subtle sem sombra · input 48px · placeholder tracejado" name="Blocos e inputs" -->
+<link rel="stylesheet" href="../styles.css">
+<style>
+body{margin:0;padding:20px;font-family:var(--font-sans);color:var(--text-primary);background:var(--surface-page);-webkit-font-smoothing:antialiased}
+.sw{display:flex;flex-direction:column;gap:6px;font-size:12px;color:var(--text-muted)}
+.sw i{display:block;height:56px;border-radius:var(--radius-md);border:1px solid var(--border-hairline)}
+.sw b{color:var(--text-primary);font-weight:500}
+.row{display:grid;gap:12px}
+code{font-family:var(--font-mono);font-size:11px}
+
+</style>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+  <div style="padding:16px;background:var(--surface-subtle);border-radius:var(--radius-xl);display:flex;flex-direction:column;gap:8px">
+    <div style="font-weight:600;font-size:16px">Entrar no clube</div>
+    <div style="display:flex;align-items:center;gap:8px;height:var(--control-h-input);padding:0 14px;border-radius:var(--radius-md);background:var(--surface-input);border:1px solid var(--border-default);font-size:15px;color:var(--text-placeholder)"><span style="color:var(--text-secondary)">+55</span> (11) 90000-0000</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+    <div style="display:grid;grid-template-columns:24px 1fr auto;gap:12px;padding:14px 16px;border:1px dashed var(--border-default);border-radius:var(--radius-lg);font-size:15px;color:var(--text-muted)"><div>—</div><div>Seu apelido</div><div>0 ★</div></div>
+    <div style="font-size:12px;color:var(--text-muted)">Cards não têm sombra nem borda colorida. Profundidade vem só de <code>--surface-subtle</code>.</div>
+  </div>
+</div>

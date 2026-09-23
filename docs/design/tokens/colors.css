@@ -1,0 +1,53 @@
+:root {
+  /* ---- Base: neutros quentes (tom levemente aquecido, nunca cinza puro) ---- */
+  --ink-900: #141414; /* texto principal, botão neutro */
+  --ink-700: #4a4a46; /* texto secundário, corpo de apoio */
+  --ink-500: #6b6b66; /* texto discreto, legendas, eyebrow */
+  --ink-300: #9a9a94; /* placeholder */
+  --line-200: #d6d6d2; /* borda de input, borda de tela */
+  --line-100: #ececea; /* hairline entre linhas de lista */
+  --paper-50: #f6f6f4; /* bloco destacado (cadastro, aviso) */
+  --paper-0: #ffffff;  /* fundo da página */
+  --canvas: #ebebe8;   /* fundo fora da tela (canvas de apresentação) */
+
+  /* ---- Marca: verde limão, uma só. Usada com parcimônia. ---- */
+  --brand-700: #4d7c0f; /* texto sobre branco: destaque no título, ✓, ★ (contraste AA) */
+  --brand-600: #a8d420; /* hover do CTA */
+  --brand-500: #bfe83a; /* CTA (texto em --ink-900, nunca branco) */
+  --brand-100: #eff9d0; /* selo/tag suave */
+
+  /* ---- Feedback (provisório — só admin/status; validar quando o admin for desenhado) ---- */
+  --success-600: #2e7d4f;
+  --success-100: #e3f2e9;
+  --danger-600: #c8402f;
+  --danger-100: #fbe6e2;
+
+  /* ---- Semânticos ---- */
+  --text-primary: var(--ink-900);
+  --text-secondary: var(--ink-700);
+  --text-muted: var(--ink-500);
+  --text-placeholder: var(--ink-300);
+  --text-on-brand: var(--ink-900);
+  --text-link: var(--ink-900);
+  --text-link-hover: #555550;
+
+  --surface-page: var(--paper-0);
+  --surface-subtle: var(--paper-50);
+  --surface-canvas: var(--canvas);
+  --surface-input: var(--paper-0);
+
+  --border-default: var(--line-200);
+  --border-hairline: var(--line-100);
+  --border-strong: var(--ink-900); /* linha de cabeçalho de tabela */
+
+  --accent: var(--brand-500);        /* superfícies */
+  --accent-text: var(--brand-700);   /* texto/glifos sobre branco */
+  --accent-hover: var(--brand-600);
+  --accent-soft: var(--brand-100);
+
+  --button-primary-bg: var(--accent);
+  --button-primary-bg-hover: var(--accent-hover);
+  --button-primary-fg: var(--text-on-brand);
+  --button-secondary-bg: var(--ink-900);
+  --button-secondary-fg: var(--paper-0);
+}

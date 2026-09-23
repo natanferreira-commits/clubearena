@@ -18,7 +18,7 @@ Sem `SUPABASE_URL`/`SUPABASE_SERVICE_ROLE_KEY` o app sobe em **modo demonstraç�
 1. Criar projeto no Supabase e rodar `supabase/migrations/0001_clube_arena.sql` no SQL Editor (cria tabelas, RLS e o bucket privado `comprovantes`). **Antes do primeiro deploy.**
 2. Na Vercel, importar o repo e configurar as variáveis de `.env.example` (no mínimo `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `SESSION_SECRET`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL`).
 3. Cadastrar as casas parceiras em `/admin/casas` (nome, link de cadastro com tracking, oferta para o convidado).
-4. Lembretes de WhatsApp: agendar um cron externo (ex.: cron-job.org) a cada 10–15 min chamando `GET /api/cron/lembretes` com `Authorization: Bearer <CRON_SECRET>`. O cron da Vercel no plano Hobby só roda 1×/dia, por isso o externo.
+4. Lembretes de WhatsApp: o GitHub Actions (`.github/workflows/lembretes.yml`) chama `/api/cron/lembretes` a cada 15 min. Basta criar os secrets `SITE_URL` e `CRON_SECRET` no repositório (Settings → Secrets and variables → Actions). O cron da Vercel no plano Hobby só roda 1×/dia, por isso o GitHub.
 
 ## Telas
 
